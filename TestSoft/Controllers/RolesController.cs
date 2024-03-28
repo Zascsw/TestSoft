@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using TestSoft;
 using static System.Console;
 namespace TestSoft.Controllers
 {
     public class RolesController : Controller
     {
-        private string AdminRole = "Administrator";
+        private string AdminRole = "Administrators";
         private string UserEmail = "test@example.com";
-
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<IdentityUser> userManager;
         public RolesController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
@@ -22,7 +22,8 @@ namespace TestSoft.Controllers
                 await roleManager.CreateAsync(new IdentityRole(AdminRole));
             }
             IdentityUser user = await userManager.FindByEmailAsync(UserEmail);
-            if (user == null)
+
+            if ( == null)
             {
                 user = new();
                 user.UserName = UserEmail;
@@ -66,7 +67,7 @@ namespace TestSoft.Controllers
                 }
             }
 
-            return Redirect("default");
+            return Redirect("/");
         }
         
     }

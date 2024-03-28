@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestSoft.Models;
 
@@ -12,12 +13,12 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-
+    [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any)]
     public IActionResult Index()
     {
         return View();
     }
-
+    [Authorize(Roles = "Administrators")]
     public IActionResult Privacy()
     {
         return View();
