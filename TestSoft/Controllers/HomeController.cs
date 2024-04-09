@@ -24,7 +24,7 @@ public class HomeController : Controller
     {
         return View();
     }
-    [Authorize(Roles = "Administrators")]
+    [Authorize(Roles = "User")]
     public IActionResult Privacy()
     {
         List<string> taleList = new List<string>();
@@ -46,8 +46,74 @@ public class HomeController : Controller
         }
             return View(taleList);
     }
-    //[Authorize]
+    [Authorize(Roles = "Administrators")]
     public IActionResult Create()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult FillTable(string tableName)
+    {
+
+        // Получите информацию о столбцах выбранной таблицы
+        var columns = GetColumnsForTable(tableName);
+
+        // Создайте модель, которая будет содержать имя таблицы и ее столбцы
+        var model = new FillTableViewModel
+        {
+            TableName = tableName,
+            Columns = columns
+        };
+
+        // Передайте модель в представление
+        return View(model);
+    }
+    private List<string> GetColumnsForTable(string tableName)
+    {
+        var columns = new List<string>();
+
+        using (var connection = new SqliteConnection(_connectionString))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = $"PRAGMA table_info({tableName})";
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    columns.Add(reader.GetString(1)); // Имя столбца находится во втором столбце результата запроса PRAGMA table_info
+                }
+            }
+        }
+
+        return columns;
+    }
+    [Authorize(Roles ="User")]
+    public IActionResult DataView()
+    {
+        List<string> taleList = new List<string>();
+        using (var connection = new SqliteConnection("Data Source=table.db"))
+        {
+            SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
+            connection.Open();
+            const string sql_query = "SELECT name FROM sqlite_schema WHERE type ='table' AND name NOT LIKE 'sqlite_%';";
+            var command = new SqliteCommand(sql_query, connection);
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var tablename = reader.GetString(0);
+                    taleList.Add(tablename);
+                }
+            }
+        }
+        return View(taleList);
+    }
+    [Authorize]
+    public IActionResult Visualisation()
     {
         return View();
     }

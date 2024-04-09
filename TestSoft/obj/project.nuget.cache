@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ATVVbzqqIwJTVMJfiGkz3Sfvv3SWZ9SzEPmtVTlV5H4c2W/NSTH7OeEZg0UotGexP2ggvlDqm3xqxOO+scyxGQ==",
+  "dgSpecHash": "aK4PCPfm6a6jHh7WRrn8Rc1AOVNODkNqEShyYtvTbd404LGza4yo+dQeac8c82XNj1UpnpTaNYroSR/W00ZFlQ==",
   "success": true,
   "projectFilePath": "E:\\Unic\\Anul3\\2semestr\\TestSoft\\TestSoft\\TestSoft\\TestSoft.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vdele\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\vdele\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\vdele\\.nuget\\packages\\chart.js\\3.7.1\\chart.js.3.7.1.nupkg.sha512",
     "C:\\Users\\vdele\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\vdele\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\vdele\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

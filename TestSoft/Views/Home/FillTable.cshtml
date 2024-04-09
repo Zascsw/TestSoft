@@ -1,0 +1,17 @@
+﻿@model FillTableViewModel
+@using TestSoft
+<h1>Заполнение таблицы @Model.TableName</h1>
+
+<form method="post" action="/Table/Fill">
+    <input type="hidden" name="tableName" value="@Model.TableName" />
+
+    @foreach (var column in Model.Columns)
+    {
+        <div class="form-group">
+            <label for="@column">@column:</label>
+            <input type="text" id="@column" name="@column" class="form-control" />
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Добавить данные</button>
+</form>

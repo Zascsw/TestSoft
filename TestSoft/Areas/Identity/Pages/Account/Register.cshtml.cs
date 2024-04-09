@@ -125,16 +125,17 @@ namespace TestSoft.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
         
 
-                if (Input.isAdmin)
-                {
-                    await _userManager.AddToRoleAsync(user, "Administrators");
-                }
-                else
-                {
-                    await _userManager.AddToRoleAsync(user, "user");
-                }
+              
                 if (result.Succeeded)
                 {
+                    if (Input.isAdmin)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Administrators");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "user");
+                    }
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -164,6 +165,7 @@ namespace TestSoft.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
+
 
             // If we got this far, something failed, redisplay form
             return Page();

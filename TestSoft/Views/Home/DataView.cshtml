@@ -1,10 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "table";
+    ViewData["Title"] = "Получить х";
 }
 <h1>@ViewData["Title"]</h1>
 @model List<string>
 @using TestSoft
 
+<p>Use this page to detail your site's privacy policy.</p>
 <h1>Список таблиц</h1>
 
 <ul>
@@ -12,9 +13,9 @@
     {
         <li>
             @tableName
-            <form action="FillTable" method="post">
+            <form action="/Table/Data" method="post">
                 <input type="hidden" name="tableName" value="@tableName" />
-                <button type="submit">Заполнить таблицу</button>
+                <button type="submit">Показать таблицу</button>
             </form>
         </li>
     }
